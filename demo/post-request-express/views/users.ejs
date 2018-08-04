@@ -1,0 +1,15 @@
+<h1>Users List</h1>
+
+<% users.forEach(user=>{ %>
+    <li>
+        <%= user.username %> - <%= user.userid %>
+    </li>
+<% }) %>
+
+<div style="margin: 2em; padding: 2em">
+    <form action="/adduser" method="POST">
+        <input type="text" name="username">
+        <input type="text" name="userid">
+        <input type="submit">
+    </form>
+</div>
