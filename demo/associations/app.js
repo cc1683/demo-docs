@@ -3,37 +3,18 @@ mongoose.connect('mongodb://localhost:27017/blog_demo_2', { useNewUrlParser: tru
 
 //! define schema
 
-//* POST - title, content
+let Post = require('./models/post');
 
-let postSchema = new mongoose.Schema({
-    title: String,
-    content: String
-});
+let User = require('./models/user');
 
-//* create post model
 
-let Post = mongoose.model('Post', postSchema);
 
-//* USER - email, name
 
-let userSchema = new mongoose.Schema({
-    email: String,
-    name: String,
-    posts: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Post'
-        }
-    ]
-});
-
-//* create user model
-
-let User = mongoose.model('User', userSchema);
+//? how to connect the post to the user
 
 //! create a post
 Post.create({
-    title: 'luis post PART 2',
+    title: 'luis post PART 4',
     content: 'blah blah blah'
 },(err, post)=>{
     User.findOne({
@@ -57,6 +38,12 @@ Post.create({
 //     }
 // });
 
-//? how to connect the post to the user
+//! find user & find all posts for that user
+
+// User.findOne({name: 'Luis yChun'}).populate('posts').exec((err, user)=>{
+//     if(err){console.log(err)}else{
+//         console.log(user);
+//     }
+// });
 
 
